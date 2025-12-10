@@ -17,8 +17,10 @@ model appointment {
   med_notes      String?
   pet_id         Int
   slot_id        Int                 @unique
+  service_id     Int
   pet            pet                 @relation(fields: [pet_id], references: [pet_id], onDelete: NoAction, onUpdate: NoAction)
   slot           slot                @relation(fields: [slot_id], references: [slot_id], onDelete: NoAction, onUpdate: NoAction)
+  service        service             @relation(fields: [service_id], references: [service_id], onDelete: NoAction, onUpdate: NoAction)
   diagnosis      diagnosis[]
 }
 
@@ -114,6 +116,14 @@ model vet {
   schedule_template schedule_template[]
   slot              slot[]
   contact_data      contact_data        @relation(fields: [contact_data_id], references: [contact_data_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model service {
+  service_id      Int      @id @default(autoincrement())
+  name            String   @unique @db.VarChar(32)
+  description     String
+  room            Int
+  appointment     appointment[]
 }
 
 enum appointment_result {
