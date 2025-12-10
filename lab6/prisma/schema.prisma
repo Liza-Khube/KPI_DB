@@ -11,7 +11,6 @@ datasource db {
 model appointment {
   appointment_id Int                 @id @default(autoincrement())
   reason         String?
-  price          Decimal             @default(200) @db.Decimal(10, 2)
   status         appointment_status
   result         appointment_result?
   med_notes      String?
