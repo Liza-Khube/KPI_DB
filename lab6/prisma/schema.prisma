@@ -119,7 +119,7 @@ model vet {
 
 model service {
   service_id      Int             @id @default(autoincrement())
-  name            String          @unique @db.VarChar(32)
+  type            String          @unique @db.VarChar(32)
   description     String
   price           Decimal         @db.Decimal(10, 2)
   room            Int
